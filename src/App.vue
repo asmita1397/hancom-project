@@ -1,41 +1,19 @@
 <template>
-  <div id="app">
-    <Tab @testMethod="testMethod" :selected="selected"/>
-    
+  <div class="app">
+    <Resizable/>
   </div>
 </template>
 
 <script>
-
-import Tab from "./components/Tab"
-
+import Resizable from  './components/Resizable'
 export default {
   name: "App",
   components: {
-      Tab
-  },
-  data() {
-    return {
-      selected:""
-    }
-  },
-  methods: {
-      testMethod(data)
-      {
-        console.log("zzzzzzzzzzzzzzzzzz",data)
-         this.selected=data
-        console.log("ggggggg",this.selected)
-      }
-  },
-  
+  Resizable
+  }
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
- 
-}
+
 </style>
