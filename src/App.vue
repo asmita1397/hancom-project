@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="left"></div>
-
-   <!--  <div class="right"></div> -->
+    <div class="left">
+    
+    </div>
 
     <div class="right">
       <div class="header">
@@ -19,25 +19,25 @@
         @addControl="addControl"
       />
 
-      <ToolBox @selectedTool="selectedTool"  />
+      <ToolBox @selectedTool="selectedTool" />
 
-     <!--  <div style="height: 500px; width: 500px; border: 1px solid red; position: absolute;">
+      <!-- <div style="height: 500px; width: 500px; border: 1px solid red; position: absolute;">
         
           <vue-draggable-resizable
-            :w="100"
-            :h="200"
-            :x="20"
-            :y="20"
+            :w="parseInt(v.width)"
+            :h="parseInt(v.height)"
+            :x="parseInt(v.left)"
+            :y="parseInt(v.top)"
             :parent="true"
-            :debug="true"
+            :debug="false"
             @resizing="onResize"
            
           >
             
-            <p :style="v">jjj</p>
+            <span :style="v">jjj</span>
           </vue-draggable-resizable>
        
-      </div> -->
+      </div>-->
     </div>
   </div>
 </template>
@@ -45,34 +45,30 @@
 <script>
 import ToolBox from "./components/ToolBox";
 import UserForm from "./components/UserForm";
-/* import VueDraggableResizable from "./components/vue-draggable-resizable"; */
+
 export default {
   name: "app",
   components: {
     ToolBox,
-    UserForm,
-   /*  VueDraggableResizable */
+    UserForm
   },
   props: {
     msg: String
   },
   data() {
     return {
-      selected: "hhhhh",
-
-       v:
-       {
-         width:"100px",
-         height:"200px",
-         border:"1px solid",
-         position:"absolute",
-         left:20,
-         top:20
-        
-       },
+      selected: "",
+      v: {
+        width: "50px",
+        height: "20px",
+        border: "1px solid",
+        position: "absolute",
+        left: "0px",
+        top: "0px"
+      },
       prevModalZIndex: 2,
       modals: [
-        {
+       /*  {
           id: 1,
           name: "UserForm",
           selected: "label",
@@ -227,21 +223,25 @@ export default {
             position: "absolute",
             right: "-174px"
           }
-        }
+        } */
       ],
       show: false
     };
   },
   methods: {
     onResize: function(x, y, width, height) {
-      console.log("jjjjjjjjjjj",x, y, width, height);
+      console.log("jjjjjjjjjjj", x, y, width, height);
+      console.log(this.v.left, this.v.top, this.v.width, this.v.height);
+      (this.v.width = `${width}px`),
+        (this.v.height = `${height}px`),
+        (this.v.left = `${x}px`),
+        (this.v.top = `${y}px`);
     },
     addUserForm() {
       let userForm = {
         id: this.modals.length + 1,
         name: "UserForm",
         controls: [
-         
           {
             /* id: 1,
             name: "Label",
@@ -265,10 +265,10 @@ export default {
           position: "fixed",
           display: "block",
           zIndex: ++this.prevModalZIndex,
-          borderTop: "40px solid #e1eaf1",
-          borderLeft: "10px solid #e1eaf1",
-          borderRight: "10px solid #e1eaf1",
-          borderBottom: "10px solid #e1eaf1",
+          borderTop: "40px solid rgb(159, 196, 224)",
+          borderLeft: "8px solid rgb(159, 196, 224)",
+          borderRight: "8px solid rgb(159, 196, 224)",
+          borderBottom: "8px solid rgb(159, 196, 224)",
           paddingTop: "5px",
           paddingLeft: "10px",
           width: "600px",
@@ -277,10 +277,10 @@ export default {
           borderRadius: "1%"
         },
         inner: {
-          borderTop: "40px solid #e1eaf1",
-          borderLeft: "8px solid #e1eaf1",
-          borderRight: "8px solid #e1eaf1",
-          borderBottom: "8px solid #e1eaf1",
+          borderTop: "40px solid rgb(159, 196, 224)",
+          borderLeft: "6px solid rgb(159, 196, 224)",
+          borderRight: "6px solid rgb(159, 196, 224)",
+          borderBottom: "6px solid rgb(159, 196, 224)",
           borderRadius: "1%",
           width: "375px",
           height: "200px",
@@ -303,7 +303,7 @@ export default {
         },
         closeButton: {
           position: " absolute",
-          right: "-403px"
+          right: "-528px"
         },
         closeInnerButton: {
           position: "absolute",
@@ -454,14 +454,15 @@ button {
   margin-top: -38px;
   position: absolute;
   padding: 5px;
-  background-color: transparent;
+  /* background-color: transparent; */
   border: none;
-  color: white;
+  color: black;
+  margin-left: 12px;
 }
 .header {
   padding: 22px;
   text-align: center;
-  background: #366f9a;
+  background: #80888e;
   color: black;
   font-size: 22px;
   margin-top: -20px;
@@ -480,7 +481,7 @@ button {
 
 .right {
   right: 0;
-  background-color: dimgrey;
+  background-color: #e3e3e3;
   height: 100%;
   width: 70%;
   position: fixed;
