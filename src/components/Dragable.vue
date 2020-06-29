@@ -1,6 +1,9 @@
+<template>
+<div style="display:none"></div>
+ 
+</template>
 <script>
 export default {
-  name: 'DraggableDiv',
  props:
  {
      eventObject:Object
@@ -19,7 +22,7 @@ export default {
   methods: {
      
     dragMouseDown(event) {
-       
+       console.log("oooooooo")
       event.preventDefault()
       this.positions.clientX = event.clientX
       this.positions.clientY = event.clientY

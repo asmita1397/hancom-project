@@ -1,6 +1,6 @@
 <template>
   <div class="container" ref="draggableContainer" id="draggable-container">
-    <div class="top" id="draggable-header" @mousedown="dragMouseDown">
+    <div :style="style" @mousedown="dragMouseDown" @click="toolBoxClick">
       <span class="dot">ToolBox</span>
     </div>
     <hr />
@@ -25,11 +25,30 @@ export default {
     Icon,
     Dragable
   },
- 
+  data() {
+    return {
+      style: {
+       
+        cursor: "pointer",
+        zIndex: "0",
+        padding: "10px",
+        background: "dimgrey",
+        borderTopLeftRadius: " 4px",
+        borderTopRightRadius: "4px",
+        height: "20%",
+        left: "0"
+      }
+    };
+  },
+  props: {
+    prevModalZIndex:Number
+  },
   methods: {
     dragMouseDown(event) {
       event.preventDefault();
-       this.$refs.child.dragMouseDown(event);
+      console.log("tool", this.prevModalZIndex,this.style.zIndex);
+     /*  this.style.zIndex=this.prevModalZIndex++ */
+      this.$refs.child.dragMouseDown(event);
       document.onmousemove = this.elementDrag;
       document.onmouseup = this.closeDragElement;
     },
@@ -40,10 +59,14 @@ export default {
     closeDragElement: function(event) {
       this.$refs.child.closeDragElement(event);
     },
-    handleClick(tool)
+    handleClick(tool) {
+      console.log("tool", tool);
+      
+      this.$emit("selectedTool", tool);
+    },
+    toolBoxClick()
     {
-        console.log("tool",tool)
-        this.$emit('selectedTool',tool)
+      this.style.zIndex=this.prevModalZIndex+10
     }
   }
 };
@@ -54,7 +77,7 @@ export default {
 <style scoped>
 #draggable-container {
   position: absolute;
-  z-index: 9;
+  z-index: 100;
   /*  background-color: #f1f1f1; */
   text-align: center;
   border: 1px solid #d3d3d3;
@@ -65,7 +88,7 @@ export default {
 #draggable-header {
   padding: 10px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 100;
 }
 
 .dot {

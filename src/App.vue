@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="left">
-    
+     
     </div>
 
-    <div class="right">
+    <div class="right" >
       <div class="header">
         <button @click="openModal()" style="display:none">Open</button>
       </div>
@@ -14,12 +14,12 @@
       <UserForm
         @makeActive="makeActive"
         @closeWindow="closeWindow"
-        :modals="modals"
-        :selected="selected"
+        :userForms="userForms"
+        :selectedControl="selectedControl"
         @addControl="addControl"
       />
 
-      <ToolBox @selectedTool="selectedTool" />
+      <ToolBox   @selectedTool="selectedTool" :prevModalZIndex="prevModalZIndex" />
 
       <!-- <div style="height: 500px; width: 500px; border: 1px solid red; position: absolute;">
         
@@ -46,6 +46,7 @@
 import ToolBox from "./components/ToolBox";
 import UserForm from "./components/UserForm";
 
+
 export default {
   name: "app",
   components: {
@@ -57,7 +58,7 @@ export default {
   },
   data() {
     return {
-      selected: "",
+      selectedControl: "",
       v: {
         width: "50px",
         height: "20px",
@@ -67,11 +68,10 @@ export default {
         top: "0px"
       },
       prevModalZIndex: 2,
-      modals: [
-       /*  {
+      userForms: [
+        {
           id: 1,
           name: "UserForm",
-          selected: "label",
           controls: [
             {
               id: 1,
@@ -82,10 +82,10 @@ export default {
               },
               style: {
                 position: "absolute",
-                left: "50",
-                top: "54",
-                width: "100",
-                height: "40",
+                left: "50px",
+                top: "54px",
+                width: "100px",
+                height: "40px",
                 resize: "both",
                 overflow: "auto",
                 zIndex: "1",
@@ -94,136 +94,60 @@ export default {
             }
           ],
 
-          style: {
-            position: "absolute",
-            display: "none",
-            zIndex: 1,
-            borderTop: "40px solid skyblue",
-            borderLeft: "13px solid skyblue",
-            borderRight: "13px solid skyblue",
-            borderBottom: "13px solid skyblue",
-            paddingTop: "5px",
-            paddingLeft: "5px",
-            width: "400px",
-            height: "500px",
-            background: "white",
-            borderRadius: "1%",
-            top: "10px",
-            left: "20px"
-          },
-          inner: {
-            borderTop: "40px solid skyblue",
-            borderLeft: "10px solid skyblue",
-            borderRight: "10px solid skyblue",
-            borderBottom: "10px solid skyblue",
-            borderRadius: "1%",
-            width: "250px",
-            height: "300px",
-            top: "0px",
-            left: 0,
-            background: "#fff",
-            marginTop: "5px",
-            marginLeft: "5px",
-            resize: "both",
-            overflow: " auto"
-          },
-          headerText: {
-            marginTop: "-35px",
-            marginLeft: "-11px",
-            position: "absolute"
-          },
-          innerHeaderText: {
-            top: "4px",
-            position: "absolute !important"
-          },
-          closeButton: {
-            position: " absolute",
-            right: "-208px"
-          },
-          closeInnerButton: {
-            position: "absolute",
-            right: "-174px"
-          }
-        },
-        {
-          id: 2,
-          name: "UserForm",
-          controls: [
-            {
-              id: "",
-              name: "",
-              type: "input",
-              attributes: {},
-              style: {}
+          outerWindowStyle: {
+            container: {
+              position: "absolute",
+              textAlign: "left",
+              border: "3px solid rgb(159, 196, 224)",
+              width: "600px",
+              height: "400px",
+              borderTopLeftRadius: "4px",
+              borderTopRightRadius: "4px",
+              backgroundColor:"white",
+              display:"block",
+              zIndex:"2"
             },
-            {
-              id: 2,
-              name: "Label",
-              type: "label",
-              caption: "Text for label",
-              style: {
-                top: "10px",
-                left: "20px",
-                width: "200px",
-                height: "150px"
-              },
-              attributes: {
-                name: "",
-                value: ""
-              }
+
+            top: {
+              padding: "8px",
+              background: "rgb(159, 196, 224)",
+              height: "21px"
+            },
+            closeButton: {
+              right: "10px",
+              position: "absolute"
             }
-          ],
-          style: {
-            position: "fixed",
-            display: "none",
-            zIndex: 1,
-            borderTop: "40px solid skyblue",
-            borderLeft: "13px solid skyblue",
-            borderRight: "13px solid skyblue",
-            borderBottom: "13px solid skyblue",
-            paddingTop: "5px",
-            paddingLeft: "10px",
-            width: "400px",
-            height: "500px",
-            background: "red",
-            borderRadius: "1%"
           },
-          inner: {
-            borderTop: "40px solid skyblue",
-            borderLeft: "10px solid skyblue",
-            borderRight: "10px solid skyblue",
-            borderBottom: "10px solid skyblue",
-            borderRadius: "1%",
-            width: "250px",
-            height: "300px",
-            top: "0px",
-            left: 0,
-            position: "absolute",
-            background: "#fff",
-            marginTop: "5px",
-            marginLeft: "5px",
-            resize: "both",
-            overflow: " auto"
-          },
-          headerText: {
-            marginTop: "-35px",
-            marginLeft: "-11px",
-            position: "absolute"
-          },
-          innerHeaderText: {
-            marginTop: "-35px",
-            marginLeft: "-200px",
-            position: "absolute"
-          },
-          closeButton: {
-            position: " absolute",
-            right: "-208px"
-          },
-          closeInnerButton: {
-            position: "absolute",
-            right: "-174px"
+          innerWindowStyle: {
+            container: {
+              position: "absolute",
+              textAlign: "left",
+              border: "3px solid rgb(159, 196, 224)",
+              width: "375px",
+              height: "200px",
+              resize: "both",
+              overflow: "auto",
+              borderTopLeftRadius: "4px",
+              borderTopRightRadius: "4px"
+            },
+            
+            top: {
+              padding: "8px",
+              background: "rgb(159, 196, 224)",
+              height: "21px"
+            },
+            innerContainer:
+            {
+                width:"100%",
+                height:"163px"
+            },
+            closeButton: {
+              right: "10px",
+              position: "absolute"
+            }
           }
-        } */
+        }
+        
       ],
       show: false
     };
@@ -239,7 +163,7 @@ export default {
     },
     addUserForm() {
       let userForm = {
-        id: this.modals.length + 1,
+        id: this.userForms.length + 1,
         name: "UserForm",
         controls: [
           {
@@ -261,73 +185,78 @@ export default {
           }
         ],
 
-        style: {
-          position: "fixed",
-          display: "block",
-          zIndex: ++this.prevModalZIndex,
-          borderTop: "40px solid rgb(159, 196, 224)",
-          borderLeft: "8px solid rgb(159, 196, 224)",
-          borderRight: "8px solid rgb(159, 196, 224)",
-          borderBottom: "8px solid rgb(159, 196, 224)",
-          paddingTop: "5px",
-          paddingLeft: "10px",
-          width: "600px",
-          height: "400px",
-          background: "white",
-          borderRadius: "1%"
-        },
-        inner: {
-          borderTop: "40px solid rgb(159, 196, 224)",
-          borderLeft: "6px solid rgb(159, 196, 224)",
-          borderRight: "6px solid rgb(159, 196, 224)",
-          borderBottom: "6px solid rgb(159, 196, 224)",
-          borderRadius: "1%",
-          width: "375px",
-          height: "200px",
-          top: "0px",
-          left: 0,
-          background: "#fff",
-          marginTop: "1px",
-          marginLeft: "1px",
-          resize: "both",
-          overflow: " auto"
-        },
-        headerText: {
-          marginTop: "-35px",
-          marginLeft: "-11px",
-          position: "absolute"
-        },
-        innerHeaderText: {
-          top: "4px",
-          position: "absolute !important"
-        },
-        closeButton: {
-          position: " absolute",
-          right: "-528px"
-        },
-        closeInnerButton: {
-          position: "absolute",
-          right: "-300px"
-        }
+        
+          outerWindowStyle: {
+            container: {
+              position: "absolute",
+              textAlign: "left",
+              border: "3px solid rgb(159, 196, 224)",
+              width: "600px",
+              height: "400px",
+              borderTopLeftRadius: "4px",
+              borderTopRightRadius: "4px",
+              backgroundColor:"white",
+              display:"block",
+              zIndex:"2"
+            },
+
+            top: {
+              padding: "8px",
+              background: "rgb(159, 196, 224)",
+              height: "21px"
+            },
+            closeButton: {
+              right: "10px",
+              position: "absolute"
+            }
+          },
+          innerWindowStyle: {
+            container: {
+              position: "absolute",
+              textAlign: "left",
+              border: "3px solid rgb(159, 196, 224)",
+              width: "375px",
+              height: "200px",
+              resize: "both",
+              overflow: "auto",
+              borderTopLeftRadius: "4px",
+              borderTopRightRadius: "4px"
+            },
+            
+            top: {
+              padding: "8px",
+              background: "rgb(159, 196, 224)",
+              height: "21px"
+            },
+            innerContainer:
+            {
+                width:"100%",
+                height:"163px"
+            },
+            closeButton: {
+              right: "10px",
+              position: "absolute"
+            }
+          }
       };
-      this.modals = [...this.modals, userForm];
+      this.userForms = [...this.userForms, userForm];
     },
 
     addControl(tool, pos) {
-      this.modals[pos - 1].controls = [...this.modals[pos - 1].controls, tool];
-      console.log("I am tool", this.modals[pos - 1].controls, pos, tool);
+      this.userForms[pos - 1].controls = [...this.userForms[pos - 1].controls, tool];
+      console.log("I am tool", this.userForms[pos - 1].controls, pos, tool);
     },
     makeActive(modal) {
       console.log("Hello");
       this.previousZindex = ++this.prevModalZIndex;
-      modal.style.zIndex = this.previousZindex.toString();
+      modal.outerWindowStyle.container.zIndex = this.previousZindex.toString();
     },
     openModal() {
-      for (let i = 0; i < this.modals.length; i++) {
-        if (this.modals[i].style.display === "block") {
-          this.modals[i].style.display = "none";
+      for (let i = 0; i < this.userForms.length; i++) {
+        if (this.userForms[i].style.display === "block") {
+          this.userForms[i].style.display = "none";
         } else {
-          this.modals[i].style.display = "block";
+          this.userForms[i].style.display = "block";
         }
       }
 
@@ -335,40 +264,21 @@ export default {
     },
     closeWindow(modal) {
       console.log("modal of close", modal.id);
-      for (let i = 0; i < this.modals.length; i++) {
-        if (this.modals[i].id == modal.id) {
-          console.log(this.modals[i]);
-          this.modals[i].style.display = "none";
+      for (let i = 0; i < this.userForms.length; i++) {
+        if (this.userForms[i].id == modal.id) {
+          console.log(this.userForms[i]);
+          this.userForms[i].outerWindowStyle.container.display = "none";
         }
       }
     },
     selectedTool(tool) {
-      console.log(this.selected);
-      this.selected = tool;
+      console.log(this.selectedControl);
+      this.selectedControl = tool;
     },
 
-    getPos(e) {
-      // var rect = e.target.getBoundingClientRect();
-      // console.log(e.clientX - rect.left);
-      // console.log(e.clientY - rect.top);
-
-      // console.log("===============");
-      // console.log(this.$refs.pos.getBoundingClientRect().left);
-      // console.log(this.$refs.pos.getBoundingClientRect().top);
-
-      console.log("===============");
-      console.log(e.offsetX); // will get left
-      console.log(e.offsetY); // will get top
-      console.log("===============");
-    },
-    first() {
-      console.log("First Clicked");
-    },
-    second() {
-      console.log("Second Clicked");
-    }
+   
     // created() {
-    //   this.prevModalZIndex = this.modals[this.modals.length - 1].style.zIndex;
+    //   this.prevModalZIndex = this.userForms[this.userForms.length - 1].style.zIndex;
     // }
   }
 };
