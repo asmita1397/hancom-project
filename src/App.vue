@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="left" >
-     
-    </div>
+    <div class="left"></div>
 
     <div class="right">
       <div class="header">
@@ -28,6 +26,7 @@
 <script>
 import ToolBox from "./components/ToolBox";
 import UserForm from "./components/UserForm";
+import userData from "./components/JsonFiles/addUserData.json";
 export default {
   name: "app",
   components: {
@@ -39,129 +38,26 @@ export default {
   },
   data() {
     return {
-      selectedControl: "",
-      prevModalZIndex: 2,
-      userForms: [
-        {
-          id: 1,
-          name: "UserForm",
-          controls: [
-            {
-              id: 1,
-              name: "Label",
-              type: "label",
-              attributes: {
-                value: "Good Morning"
-              },
-              style: {
-                position: "absolute",
-                left: "70px",
-                top: "100px",
-                width: "100px",
-                height: "40px",
-                resize: "both",
-                overflow: "auto",
-                zIndex: "1",
-                border: "1px solid"
-              }
-            },
-            {
-              id: 2,
-              name: "Input",
-              type: "input",
-              attributes: {
-                value: "Good Morning"
-              },
-              style: {
-                position: "absolute",
-                left: "50px",
-                top: "54px",
-                width: "100px",
-                height: "40px",
-                resize: "both",
-                overflow: "auto",
-                zIndex: "1",
-                border: "1px solid"
-              }
-            }
-          ],
-
-          outerWindowStyle: {
-            container: {
-              position: "absolute",
-              textAlign: "left",
-              border: "3px solid rgb(159, 196, 224)",
-              width: "600px",
-              height: "400px",
-              borderTopLeftRadius: "4px",
-              borderTopRightRadius: "4px",
-              backgroundColor: "white",
-              display: "block",
-              zIndex: "2"
-            },
-
-            top: {
-              padding: "8px",
-              background: "rgb(159, 196, 224)",
-              height: "21px"
-            },
-            closeButton: {
-              right: "10px",
-              position: "absolute"
-            }
-          },
-          innerWindowStyle: {
-            container: {
-              position: "absolute",
-              textAlign: "left",
-              border: "3px solid rgb(159, 196, 224)",
-              width: "375px",
-              height: "200px",
-              resize: "both",
-              overflow: "auto",
-              borderTopLeftRadius: "4px",
-              borderTopRightRadius: "4px",
-              borderStyle: "groove",
-              maxWidth: "100%",
-              maxHeight: "350px"
-            },
-
-            top: {
-              padding: "8px",
-              background: "rgb(159, 196, 224)",
-              height: "21px"
-            },
-            innerContainer: {
-              width: "100%",
-              height: "calc(100% - 37px)",
-              backgroundColor: "#e3e3e357",
-              position: "absolute",
-              left: "0px",
-              top: "37px",
-              backgroundSize: " 9px 19px",
-              backgroundImage:
-                "radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px)"
-            },
-            closeButton: {
-              right: "10px",
-              position: "absolute"
-            }
-          }
-        }
-      ],
-      show: false
+      userForms: userData.userForms,
+      selectedControl: userData.selectedControl,
+      prevModalZIndex: userData.prevModalZIndex
     };
   },
   methods: {
+    innerWindowResize(e, userFormId) {
+      for (let i = 0; i < this.userForms.length; i++) {
+        if (this.userForms[i].id === userFormId) {
+          this.userForms[i].innerWindowStyle.container.width = e.width;
+          this.userForms[i].innerWindowStyle.container.height = e.height;
+        }
+      }
+    },
     addUserForm() {
+      console.log(this.userForms[0]);
       let userForm = {
         id: this.userForms.length + 1,
         name: "UserForm",
-        controls: [
-          {
-            
-          }
-        ],
+        controls: [{}],
 
         outerWindowStyle: {
           container: {
@@ -254,14 +150,12 @@ export default {
       console.log(this.selectedControl);
       this.selectedControl = tool;
     }
-
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .header {
   padding: 22px;
   text-align: center;
