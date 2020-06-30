@@ -1,0 +1,19 @@
+{
+    "id": 1,
+    "name": "Label",
+    "type": "label",
+    "attributes": {
+        "value": "Good Morning"
+    },
+    "style": {
+        "position": "absolute",
+        "left": "50px",
+        "top": "54px",
+        "width": "100px",
+        "height": "40px",
+        "resize": "both",
+        "overflow": "auto",
+        "zIndex": "1",
+        "border": "1px solid"
+    }
+}

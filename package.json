@@ -14,8 +14,10 @@
     "vue": "^2.6.11",
     "vue-draggable": "^2.0.6",
     "vue-draggable-resizable": "^2.2.0",
+    "vue-element-resize-detector": "^1.0.6",
     "vue-js-modal": "^2.0.0-rc.3",
     "vue-resizable": "^1.2.0",
+    "vue-simple-drag-resize": "0.0.2",
     "vuedraggable": "^2.23.2"
   },
   "devDependencies": {

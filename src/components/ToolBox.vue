@@ -1,6 +1,6 @@
 <template>
   <div class="container" ref="draggableContainer" id="draggable-container">
-    <div :style="style" @mousedown="dragMouseDown" @click="toolBoxClick">
+    <div :style="style" @mousedown="dragMouseDown">
       <span class="dot">ToolBox</span>
     </div>
     <hr />
@@ -8,7 +8,7 @@
       <span class="content" @click="handleClick('label')">
         <Icon />
       </span>
-      <span class="content" @click="handleClick('arrow')">
+      <span class="content" @click="handleClick('input')">
         <Icon />
       </span>
     </div>
@@ -64,10 +64,10 @@ export default {
       
       this.$emit("selectedTool", tool);
     },
-    toolBoxClick()
+  /*   toolBoxClick()
     {
       this.style.zIndex=this.prevModalZIndex+10
-    }
+    } */
   }
 };
 </script>

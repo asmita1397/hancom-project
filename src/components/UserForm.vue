@@ -11,7 +11,7 @@
           <button :style="modal.outerWindowStyle.closeButton" v-on:click="closeWindow(modal)">x</button>
         </div>
 
-        <div :style="modal.innerWindowStyle.container">
+        <div :style="modal.innerWindowStyle.container" v-resize @resize="onResize($event,modal.id)">
           <div :style="modal.innerWindowStyle.top">
             <span>{{modal.name}}{{modal.id}}</span>
             <button :style="modal.innerWindowStyle.closeButton" disabled>x</button>
@@ -19,11 +19,9 @@
           <div
             ref="pos"
             :style="modal.innerWindowStyle.innerContainer"
-            @click="createTool($event,modal.id,'mmmm')"
+            @click="createTool($event,modal.id)"
           >
-            <div v-for="control in modal.controls" :key="control.id">
-              <CustomLabel :control="control" />
-            </div>
+            <UserFormControl :modal="modal" />
           </div>
         </div>
       </div>
@@ -34,14 +32,15 @@
 
 <script>
 import Dragable from "./Dragable";
-import CustomLabel from "./CustomLabel";
-import customLabelData from "./CustomLabel"
+
+import customLabelData from "./CustomLabel";
+import UserFormControl from "./UserFormControl";
 
 export default {
   name: "UserForm",
   components: {
     Dragable,
-    CustomLabel
+    UserFormControl
   },
   data() {
     return { refer: "" };
@@ -52,6 +51,9 @@ export default {
   },
 
   methods: {
+    onResize(e, userFormId) {
+      this.$emit("innerWindowResize", e.detail, userFormId);
+    },
     make(modal) {
       this.$emit("makeActive", modal);
     },
@@ -75,15 +77,18 @@ export default {
     closeDragElement: function(event) {
       this.$refs.child.closeDragElement(event);
     },
-    createTool(e, pos, con) {
-       console.log(customLabelData)
+    createTool(e, pos) {
+      console.log(customLabelData);
 
       if (this.selectedControl == "label") {
         const tool = {
-          ...customLabelData,
           id: this.userForms[pos - 1].controls.length + 1,
+          name: "Label",
+          type: "label",
+          attributes: {
+            value: "Good Morning"
+          },
           style: {
-            ...customLabelData.style,
             position: "absolute",
             left: `${e.layerX}px`,
             top: `${e.layerY}px`,
@@ -95,9 +100,32 @@ export default {
             border: "1px solid black"
           }
         };
-      
-          this.$emit("addControl", tool, pos, con);
-        
+
+        this.$emit("addControl", tool, pos);
+      }
+      if (this.selectedControl == "input") {
+        console.log("kkk");
+        const tool = {
+          id: this.userForms[pos - 1].controls.length + 1,
+          name: "Input",
+          type: "input",
+          attributes: {
+            value: "Good Morning"
+          },
+          style: {
+            position: "absolute",
+            left: `${e.layerX}px`,
+            top: `${e.layerY}px`,
+            width: "100px",
+            height: "40px",
+            resize: "both",
+            overflow: "auto",
+            zIndex: "1",
+            border: "1px solid black"
+          }
+        };
+        console.log(tool);
+        this.$emit("addControl", tool, pos);
       }
     }
   }
