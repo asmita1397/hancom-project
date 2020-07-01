@@ -4,10 +4,10 @@
 
     <div class="right">
       <div class="header">
-        <button @click="openModal()" style="display:none">Open</button>
+        <button  @click="openModal()" style="display:none">Open</button>
       </div>
 
-      <button @click="addUserForm()">Insert UserForm</button>
+      <button class="addUserFormButtonStyle" @click="addUserForm()">Insert UserForm</button>
 
       <UserForm
         @makeActive="makeActive"
@@ -186,5 +186,14 @@ export default {
   top: 0;
   overflow-x: hidden;
   padding-top: 20px;
+}
+.addUserFormButtonStyle
+{
+  
+    position: absolute;
+    top: 7px;
+    margin: 0px;
+    padding: 5px;
+
 }
 </style>

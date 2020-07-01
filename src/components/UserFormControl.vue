@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="display:none" v-for="control in modal.controls" :key="control.id">
+    <div  v-for="control in modal.controls" :key="control.id">
       <CustomLabel v-if="control.type=='label'" :control="control" />
       <CustomInput :control="control" />
     </div>
