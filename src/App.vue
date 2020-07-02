@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div class="left"></div>
+    <div class="left" style="padding:10px">
+      <windowView />
+    </div>
 
     <div class="right">
       <div class="header">
-        <button  @click="openModal()" style="display:none">Open</button>
+        <button @click="openModal()" style="display:none">Open</button>
       </div>
 
       <button class="addUserFormButtonStyle" @click="addUserForm()">Insert UserForm</button>
@@ -26,12 +28,14 @@
 <script>
 import ToolBox from "./components/ToolBox";
 import UserForm from "./components/UserForm";
+import windowView from "./components/windowView";
 import userData from "./components/JsonFiles/addUserData.json";
 export default {
   name: "app",
   components: {
     ToolBox,
-    UserForm
+    UserForm,
+    windowView
   },
   props: {
     msg: String
@@ -120,6 +124,7 @@ export default {
         tool
       ];
       console.log("I am tool", this.userForms[pos - 1].controls, pos, tool);
+       this.selectedControl = "";
     },
     makeActive(modal) {
       console.log("Hello");
@@ -187,13 +192,10 @@ export default {
   overflow-x: hidden;
   padding-top: 20px;
 }
-.addUserFormButtonStyle
-{
-  
-    position: absolute;
-    top: 7px;
-    margin: 0px;
-    padding: 5px;
-
+.addUserFormButtonStyle {
+  position: absolute;
+  top: 7px;
+  margin: 0px;
+  padding: 5px;
 }
 </style>

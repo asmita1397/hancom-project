@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "vue": "^2.6.11",
     "vue-draggable": "^2.0.6",
     "vue-draggable-resizable": "^2.2.0",

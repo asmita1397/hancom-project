@@ -1,15 +1,15 @@
 <template>
   <div>
     
-   <!--  <input v-if="control" :style="control.style">{{control.name}} /> -->
+    <input v-if="control" :style="control.style">{{control.name}} />
   </div>
 </template>
 
 <script>
 export default {
   name: "customInput",
- /*  props: {
+  props: {
     control: Object
-  } */
+  }
 };
 </script>

@@ -8,7 +8,7 @@
     <div class="top" id="draggable-header" @mousedown="dragMouseDown">
       <span class="dot">ToolBox</span>
 
-      <span>
+      <span class="closeButton">
         <img
           class="close"
           @click="handleClose"
@@ -16,276 +16,279 @@
         />
       </span>
     </div>
-    <hr />
-    <figure class="tabBlock">
-      <ul class="tabBlock-tabs">
-        <li class="tabBlock-tab">Controls</li>
-      </ul>
-      <div class="tabBlock-content">
-        <div class="tabBlock-pane">
-          <div>
-            <div class="tooltip">
-              <button>
-                <img
-                  class="img"
-                  name="select"
-                  @click="handleClick"
-                  v-bind:style="{
-                    'background-color': isActive === 'select' ? '#5e99f7' : '',
+
+    <br />
+    <div class="innerContainer">
+      <figure class="tabBlock">
+        <ul class="tabBlock-tabs">
+          <li class="tabBlock-tab">Controls</li>
+        </ul>
+        <div class="tabBlock-content">
+          <div class="tabBlock-pane">
+            <div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    class="img"
+                    name="select"
+                    @click="handleClick"
+                    v-bind:style="{
+                    
                     'border-style': isActive === 'select' ? 'inset' : '',
                   }"
-                  src="https://img.icons8.com/android/24/000000/cursor.png"
-                />
-              </button>
-              <span class="tooltiptext">Select</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="label"
-                  @click="handleClick"
-                  v-bind:style="{
-                    'background-color': isActive === 'label' ? '#5e99f7' : '',
+                    src="https://img.icons8.com/android/24/000000/cursor.png"
+                  />
+                </button>
+                <span class="tooltiptext">Select</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="label"
+                    @click="handleClick"
+                    v-bind:style="{
+                    
                     'border-style': isActive === 'label' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/ios-filled/50/000000/a.png"
-                />
-              </button>
-              <span class="tooltiptext">Label</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="textbox"
-                  @click="handleClick"
-                  v-bind:style="{
-                    'background-color': isActive === 'textbox' ? '#5e99f7' : '',
+                    class="img"
+                    src="https://img.icons8.com/ios-filled/50/000000/a.png"
+                  />
+                </button>
+                <span class="tooltiptext">Label</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="textbox"
+                    @click="handleClick"
+                    v-bind:style="{
+                    
                     'border-style': isActive === 'textbox' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/dotty/80/000000/text-input-form.png"
-                />
-              </button>
-              <span class="tooltiptext">textbox</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="combobox"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/dotty/80/000000/text-input-form.png"
+                  />
+                </button>
+                <span class="tooltiptext">textbox</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="combobox"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'combobox' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'combobox' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/windows/32/000000/box-other.png"
-                />
-              </button>
-              <span class="tooltiptext">ComboBox</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="listbox"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/windows/32/000000/box-other.png"
+                  />
+                </button>
+                <span class="tooltiptext">ComboBox</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="listbox"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color': isActive === 'listbox' ? '#5e99f7' : '',
                     'border-style': isActive === 'listbox' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/metro/26/000000/add-list.png"
-                />
-              </button>
-              <span class="tooltiptext">ListBox</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="checkbox"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/metro/26/000000/add-list.png"
+                  />
+                </button>
+                <span class="tooltiptext">ListBox</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="checkbox"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'checkbox' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'checkbox' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/metro/26/000000/check-all.png"
-                />
-              </button>
-              <span class="tooltiptext">CheckBox</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="optionbutton"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/metro/26/000000/check-all.png"
+                  />
+                </button>
+                <span class="tooltiptext">CheckBox</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="optionbutton"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'optionbutton' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'optionbutton' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/material-sharp/24/000000/unchecked-radio-button.png"
-                />
-              </button>
-              <span class="tooltiptext">OptionButton</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="togglebutton"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/material-sharp/24/000000/unchecked-radio-button.png"
+                  />
+                </button>
+                <span class="tooltiptext">OptionButton</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="togglebutton"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'togglebutton' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'togglebutton' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/material-sharp/24/000000/toggle-on.png"
-                />
-              </button>
-              <span class="tooltiptext">ToggleButton</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="frame"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/material-sharp/24/000000/toggle-on.png"
+                  />
+                </button>
+                <span class="tooltiptext">ToggleButton</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="frame"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color': isActive === 'frame' ? '#5e99f7' : '',
                     'border-style': isActive === 'frame' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/android/24/000000/frame.png"
-                />
-              </button>
-              <span class="tooltiptext">Frame</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="commandbutton"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/android/24/000000/frame.png"
+                  />
+                </button>
+                <span class="tooltiptext">Frame</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="commandbutton"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'commandbutton' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'commandbutton' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/metro/24/000000/run-command.png"
-                />
-              </button>
-              <span class="tooltiptext">CommandButton</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="tabstrip"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/metro/24/000000/run-command.png"
+                  />
+                </button>
+                <span class="tooltiptext">CommandButton</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="tabstrip"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'tabstrip' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'tabstrip' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/ios-filled/50/000000/tab.png"
-                />
-              </button>
-              <span class="tooltiptext">TabStrip</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="multipage"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/ios-filled/50/000000/tab.png"
+                  />
+                </button>
+                <span class="tooltiptext">TabStrip</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="multipage"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'multipage' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'multipage' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/dotty/80/000000/tab.png"
-                />
-              </button>
-              <span class="tooltiptext">MutliPage</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="scrollbar"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/dotty/80/000000/tab.png"
+                  />
+                </button>
+                <span class="tooltiptext">MutliPage</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="scrollbar"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'scrollbar' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'scrollbar' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/ios/50/000000/circled-up-2.png"
-                />
-              </button>
-              <span class="tooltiptext">ScrollBar</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="spinbutton"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/ios/50/000000/circled-up-2.png"
+                  />
+                </button>
+                <span class="tooltiptext">ScrollBar</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="spinbutton"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color':
                       isActive === 'spinbutton' ? '#5e99f7' : '',
                     'border-style':
                       isActive === 'spinbutton' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/android/24/000000/sorting-arrows.png"
-                />
-              </button>
-              <span class="tooltiptext">SpinButton</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="image"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/android/24/000000/sorting-arrows.png"
+                  />
+                </button>
+                <span class="tooltiptext">SpinButton</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="image"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color': isActive === 'image' ? '#5e99f7' : '',
                     'border-style': isActive === 'image' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/material-outlined/24/000000/image.png"
-                />
-              </button>
-              <span class="tooltiptext">Image</span>
-            </div>
-            <div class="tooltip">
-              <button>
-                <img
-                  name="refedit"
-                  @click="handleClick"
-                  v-bind:style="{
+                    class="img"
+                    src="https://img.icons8.com/material-outlined/24/000000/image.png"
+                  />
+                </button>
+                <span class="tooltiptext">Image</span>
+              </div>
+              <div class="tooltip">
+                <button>
+                  <img
+                    name="refedit"
+                    @click="handleClick"
+                    v-bind:style="{
                     'background-color': isActive === 'refedit' ? '#5e99f7' : '',
                     'border-style': isActive === 'refedit' ? 'inset' : '',
                   }"
-                  class="img"
-                  src="https://img.icons8.com/material-outlined/24/000000/edit-property.png"
-                />
-              </button>
-              <span class="tooltiptext">RefEdit</span>
+                    class="img"
+                    src="https://img.icons8.com/material-outlined/24/000000/edit-property.png"
+                  />
+                </button>
+                <span class="tooltiptext">RefEdit</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </figure>
+      </figure>
+    </div>
   </div>
 </template>
 
@@ -339,7 +342,7 @@ export default {
       console.log(this.isActive);
       console.log(e.target.name);
       console.log("tool", e.target.name);
-      
+
       this.$emit("selectedTool", e.target.name);
     },
     handleClose() {
@@ -390,6 +393,11 @@ button {
   float: right;
   cursor: pointer;
 }
+.closeButton {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
 
 hr {
   margin: 10px;
@@ -425,7 +433,7 @@ ul {
 .tabBlock {
   margin: 0 0 0.1rem 0;
 }
-
+/* #f3f2f1 */
 .tabBlock-tab {
   background-color: #fff;
   border-color: #d8d8d8;
@@ -442,12 +450,13 @@ ul {
 }
 .tabBlock-tab:last-of-type {
   border-right-style: solid;
+  color: black;
+  font-weight: 100;
 }
 
 .tabBlock-content {
   background-color: #fff;
   border: 2px solid #d8d8d8;
-  padding: 1.25rem;
   border-style: outset;
 }
 
@@ -456,25 +465,31 @@ ul {
 }
 
 .img {
-  width: 24px;
+  width: 12px;
   cursor: default;
 }
 .img:hover {
-  background: #5e99f7;
+  /*  background: #5e99f7; */
+  
 }
 
 #draggable-container {
   position: absolute;
-  z-index: 9;
   border: 1px solid #e3e3e1;
   background-color: #e3e3e1;
-  width: 30%;
+  height: 150px;
+  width: 33%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  z-index: 100;
+  position: absolute;
 }
 
 #draggable-header {
   padding: 10px;
   cursor: move;
-  background-color: #e3e3e1;
+  background-color: white;
 }
 
 .dot {
@@ -484,19 +499,20 @@ ul {
 }
 
 .container {
-  border: 3px solid #f1f1f1;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  z-index: 100;
-}
+ 
 
+ /*  width:29% */
+}
+.innerContainer {
+  top: 36px;
+  position: absolute;
+  background-color: #f1eded;
+  padding: 6px;
+}
 .top {
   padding-top: 5px;
   background: dimgrey;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  height: 20%;
-  left: 0;
+  height: 16px;
 }
 
 .content {

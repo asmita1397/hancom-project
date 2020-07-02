@@ -7,7 +7,8 @@
         @click="make(modal)"
       >
         <div :style="modal.outerWindowStyle.top" @mousedown="dragMouseDown($event,modal.id)">
-          <span>{{modal.name}}{{modal.id}}</span>
+          <span>Book1 {{modal.name}}{{modal.id}} (UserForm)</span>
+         
           <button :style="modal.outerWindowStyle.closeButton" v-on:click="closeWindow(modal)">x</button>
         </div>
 
@@ -89,7 +90,7 @@ export default {
             value: "Good Morning"
           },
           style: {
-            position: "absolute",
+           
             left: `${e.layerX}px`,
             top: `${e.layerY}px`,
             width: "100px",
@@ -113,7 +114,6 @@ export default {
             value: "Good Morning"
           },
           style: {
-            position: "absolute",
             left: `${e.layerX}px`,
             top: `${e.layerY}px`,
             width: "100px",
